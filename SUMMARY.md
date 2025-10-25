@@ -1,6 +1,8 @@
 # 🎯 NIGHTSCOUT: PROFESSIONAL DEPLOYMENT PLAN
 ## Complete Project Summary
 
+**📦 GitHub Repository:** https://github.com/reservebtc/nightscout-professional-server
+
 ═══════════════════════════════════════════════════════════════════
 ## ✅ WHAT'S INCLUDED
 
@@ -362,15 +364,15 @@ Upload Enabled: ✅ ON
 ═══════════════════════════════════════════════════════════════════
 ## 🎓 DOCUMENTATION
 
-### Guides I created:
+### Documentation I created:
 
-1. **INSTALLATION_GUIDE.md** (22 KB)
+1. **[INSTALLATION_GUIDE.md](https://github.com/reservebtc/nightscout-professional-server/blob/main/INSTALLATION_GUIDE.md)** (22 KB)
    - Step-by-step installation
    - All commands
    - Troubleshooting
    - Optional domain setup
 
-2. **PLUGINS_GUIDE.md** (20 KB)
+2. **[PLUGINS_GUIDE.md](https://github.com/reservebtc/nightscout-professional-server/blob/main/PLUGINS_GUIDE.md)** (20 KB)
    - All 31 plugins
    - How to configure each
    - Usage examples
@@ -382,6 +384,7 @@ Upload Enabled: ✅ ON
 - GitHub: https://github.com/nightscout/cgm-remote-monitor
 - Facebook group: CGM in the Cloud
 - Discord: Nightscout Community
+- **This Repository:** https://github.com/reservebtc/nightscout-professional-server
 
 ═══════════════════════════════════════════════════════════════════
 ## 🆘 SUPPORT
