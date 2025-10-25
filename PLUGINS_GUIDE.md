@@ -1,6 +1,8 @@
 # 🔌 COMPLETE NIGHTSCOUT PLUGINS REFERENCE
 ## All Features and Configuration
 
+**📦 GitHub Repository:** https://github.com/reservebtc/nightscout-professional-server
+
 ═══════════════════════════════════════════════════════════════════
 ## 📊 CORE MONITORING PLUGINS
 
@@ -664,6 +666,11 @@ https://github.com/nightscout/cgm-remote-monitor
 **Community:**
 - Facebook: CGM in the Cloud
 - Discord: Nightscout Discord
+
+**This Repository:**
+- **Main Page:** https://github.com/reservebtc/nightscout-professional-server
+- **Installation Guide:** https://github.com/reservebtc/nightscout-professional-server/blob/main/INSTALLATION_GUIDE.md
+- **Summary:** https://github.com/reservebtc/nightscout-professional-server/blob/main/SUMMARY.md
 
 **Your config is already set to MAXIMUM!** 🎉
 All plugins enabled in docker-compose.yml
