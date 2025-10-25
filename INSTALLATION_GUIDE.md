@@ -4,6 +4,8 @@
 **⚠️ IMPORTANT: This guide is written for people with NO technical background.**  
 **If you can use a computer and follow instructions, you can do this! 💪**
 
+**📦 GitHub Repository:** https://github.com/reservebtc/nightscout-professional-server
+
 ═══════════════════════════════════════════════════════════════════
 ## 🎯 WHAT YOU'LL GET
 
@@ -252,16 +254,14 @@ cd nightscout
 
 ### 5.2. Download Files from GitHub
 
-**Replace `YOUR_USERNAME` with the actual GitHub username:**
-
 ```bash
-wget https://raw.githubusercontent.com/YOUR_USERNAME/nightscout-professional-server/main/docker-compose.yml
+wget https://raw.githubusercontent.com/reservebtc/nightscout-professional-server/main/docker-compose.yml
 
-wget https://raw.githubusercontent.com/YOUR_USERNAME/nightscout-professional-server/main/nginx.conf
+wget https://raw.githubusercontent.com/reservebtc/nightscout-professional-server/main/nginx.conf
 
-wget https://raw.githubusercontent.com/YOUR_USERNAME/nightscout-professional-server/main/nightscout.sh
+wget https://raw.githubusercontent.com/reservebtc/nightscout-professional-server/main/nightscout.sh
 
-wget https://raw.githubusercontent.com/YOUR_USERNAME/nightscout-professional-server/main/auto-backup.sh
+wget https://raw.githubusercontent.com/reservebtc/nightscout-professional-server/main/auto-backup.sh
 ```
 
 ### 5.3. Make Scripts Executable
@@ -798,8 +798,11 @@ After setup, verify:
 - Discord: Nightscout Community
 
 **This GitHub Repository:**
-- All files and documentation
-- Issues/questions
+- **Main Page:** https://github.com/reservebtc/nightscout-professional-server
+- **README:** https://github.com/reservebtc/nightscout-professional-server/blob/main/README.md
+- **SUMMARY:** https://github.com/reservebtc/nightscout-professional-server/blob/main/SUMMARY.md
+- **Plugins Guide:** https://github.com/reservebtc/nightscout-professional-server/blob/main/PLUGINS_GUIDE.md
+- **Ask Questions:** https://github.com/reservebtc/nightscout-professional-server/issues
 
 ═══════════════════════════════════════════════════════════════════
 
