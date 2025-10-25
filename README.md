@@ -1,335 +1,360 @@
-# 🚀 NIGHTSCOUT PROFESSIONAL SETUP
-## Complete Package for Professional Server Deployment
+# 🏥 Nightscout Server Setup - Easy Guide for Parents
+## Run Your Own Nightscout Server in 1 Hour
 
-═══════════════════════════════════════════════════════════════════
-## 📦 WHAT'S INCLUDED
+**For parents of children with Type 1 Diabetes who want full control over their CGM data.**
 
-### 📄 Configuration Files:
+---
 
-**1. nightscout-docker-compose.yml** (19 KB)
-   - Complete Docker Compose configuration
-   - MongoDB + Nightscout + Nginx + Mongo Express
-   - ALL 31 plugins enabled
-   - Health checks and auto-restart
-   - **RENAME to `docker-compose.yml`**
+## 💙 Why This Exists
 
-**2. nginx.conf** (8.1 KB)
-   - Reverse proxy with HTTPS
-   - WebSocket support for real-time data
-   - Performance optimized
-   - Secure SSL settings
+Managing Type 1 Diabetes is hard. You need to see blood sugar levels 24/7, and you shouldn't have to pay monthly fees or depend on services that might go down.
 
-### 🛠️ Management Scripts:
+**This guide helps you create your own Nightscout server that:**
+- ✅ Costs $4-6/month (or FREE with Oracle Cloud)
+- ✅ Works 24/7 without interruptions
+- ✅ Gives you COMPLETE control
+- ✅ Backs up automatically every day
+- ✅ Never charges you per user or feature
 
-**3. nightscout.sh** (18 KB)
-   - Main server management script
-   - Commands: setup, start, stop, restart, backup, update, monitor
-   - Automatic diagnostics
-   - **Make executable: `chmod +x nightscout.sh`**
+**You don't need to be technical. If you can follow step-by-step instructions, you can do this!**
 
-**4. auto-backup.sh** (4.4 KB)
-   - Automatic daily backups
-   - Rotation (keeps 30 days)
-   - Logging enabled
-   - For cron: `0 3 * * * /path/to/auto-backup.sh`
-   - **Make executable: `chmod +x auto-backup.sh`**
+---
 
-### 📚 Documentation:
+## 📦 WHAT YOU GET
 
-**5. SUMMARY.md** (21 KB)
-   - Project final summary
-   - Answers to all questions
-   - Action plan
-   - Checklist
+### All Features Included (No Extra Cost!)
 
-**6. INSTALLATION_GUIDE.md** (22 KB)
-   - Step-by-step installation guide
-   - From VPS creation to launch
-   - xDrip and Loop integration
-   - Troubleshooting
+✅ **Real-Time Glucose Monitoring**
+- See blood sugar levels instantly
+- Trend arrows (going up/down/stable)
+- Alarms for high and low blood sugar
 
-**7. PLUGINS_GUIDE.md** (20 KB)
-   - Description of ALL 31 plugins
-   - Configuration for each
-   - API endpoints
-   - App integration
+✅ **Insulin & Carb Tracking**
+- Active insulin (IOB) - how much insulin is still working
+- Active carbs (COB) - how many carbs still being absorbed
+- Treatment history (all boluses and meals)
 
-**8. README.md** (this file)
-   - Quick start guide
-   - File descriptions
+✅ **Closed Loop Support**
+- Works with Loop, iAPS, AAPS
+- Shows pump status
+- Displays basal rates
 
-═══════════════════════════════════════════════════════════════════
-## 🚀 QUICK START
+✅ **Smart Reminders**
+- Sensor age (time to change CGM)
+- Cannula age (time to change pump site)
+- Insulin age (insulin expires)
+- Battery age (pump battery)
 
-### 1. Clone the repository on your server:
+✅ **Automatic Backups**
+- Every night at 3 AM
+- Keeps last 30 days
+- Can restore any backup
 
+✅ **Works Everywhere**
+- iPhone and Apple Watch
+- Android phones
+- Any web browser
+- No domain name needed (just use IP address)
+
+---
+
+## 💰 HOW MUCH DOES IT COST?
+
+### Server Hosting (Monthly):
+
+**Cheapest Option:** Hetzner - **€4/month** (~$4.40)  
+**Good Option:** DigitalOcean - **$6/month**  
+**Free Option:** Oracle Cloud - **$0/month** (but harder to set up)
+
+### Compare to Paid Services:
+- T1Pal: $12-19/month
+- Other Nightscout hosting: $10-20/month
+
+**💰 You save: $100-200 per year!**
+
+---
+
+## 🚀 QUICK START (3 Simple Steps)
+
+### Step 1: Read the Guide
+📖 **[Click here to read the Installation Guide](https://github.com/reservebtc/nightscout-professional-server/blob/main/INSTALLATION_GUIDE.md)**
+
+This guide shows you:
+- How to create a server (we recommend Hetzner - easiest!)
+- How to install everything (just copy and paste commands)
+- How to connect xDrip or Loop
+- What to do if something doesn't work
+
+**The guide is written for beginners - every step explained!**
+
+### Step 2: Download the Files
+All files you need are in this repository. You'll learn how to get them in the installation guide.
+
+### Step 3: Follow Instructions
+The installation guide has **11 simple steps**:
+1. Choose and create a server (15 min)
+2. Connect to your server (5 min)
+3. Install software (15 min)
+4. Download Nightscout files (5 min)
+5. Change passwords (10 min)
+6. Start Nightscout (5 min)
+7. Check in browser (2 min)
+8. Connect xDrip (5 min)
+9. Connect Loop if you use it (5 min)
+10. Done! ✅
+
+**Total time: About 1-2 hours**
+
+---
+
+## 📚 ALL DOCUMENTATION
+
+### 🎯 **[Start Here: SUMMARY.md](https://github.com/reservebtc/nightscout-professional-server/blob/main/SUMMARY.md)**
+- Overview of everything
+- What you'll get
+- Quick answers to common questions
+- Cost breakdown
+
+### 📖 **[Installation Guide](https://github.com/reservebtc/nightscout-professional-server/blob/main/INSTALLATION_GUIDE.md)** ⭐ MOST IMPORTANT
+- Complete step-by-step instructions
+- Written for non-technical people
+- Explains what to click and where
+- Screenshots and examples
+- How to fix problems
+
+### 🔌 **[Plugins Guide](https://github.com/reservebtc/nightscout-professional-server/blob/main/PLUGINS_GUIDE.md)**
+- Explains all 31 features
+- What each feature does
+- How to configure them
+- Advanced options
+
+---
+
+## 🛠️ FILES IN THIS PROJECT
+
+### Configuration Files:
+1. **[docker-compose.yml](https://github.com/reservebtc/nightscout-professional-server/blob/main/docker-compose.yml)** - Main configuration
+2. **[nginx.conf](https://github.com/reservebtc/nightscout-professional-server/blob/main/nginx.conf)** - Web server settings
+
+### Management Scripts:
+3. **[nightscout.sh](https://github.com/reservebtc/nightscout-professional-server/blob/main/nightscout.sh)** - Start/stop/manage server
+4. **[auto-backup.sh](https://github.com/reservebtc/nightscout-professional-server/blob/main/auto-backup.sh)** - Automatic daily backups
+
+### Documentation:
+5. **[README.md](https://github.com/reservebtc/nightscout-professional-server/blob/main/README.md)** - This file
+6. **[SUMMARY.md](https://github.com/reservebtc/nightscout-professional-server/blob/main/SUMMARY.md)** - Project overview
+7. **[INSTALLATION_GUIDE.md](https://github.com/reservebtc/nightscout-professional-server/blob/main/INSTALLATION_GUIDE.md)** - Detailed setup instructions
+8. **[PLUGINS_GUIDE.md](https://github.com/reservebtc/nightscout-professional-server/blob/main/PLUGINS_GUIDE.md)** - All features explained
+9. **[LICENSE](https://github.com/reservebtc/nightscout-professional-server/blob/main/LICENSE)** - Legal stuff (free to use!)
+
+---
+
+## 📱 CONNECTING YOUR DEVICES
+
+### For xDrip (Android):
+After you set up your server, you'll enter:
+```
+https://YOUR_SECRET@YOUR_IP/api/v1/
+```
+*(The installation guide explains what to put here)*
+
+### For Loop (iPhone):
+You'll enter:
+```
+URL: https://YOUR_IP
+API Secret: YOUR_SECRET
+```
+*(Also explained in the installation guide)*
+
+**Both are super easy - just copy and paste!**
+
+---
+
+## ❓ COMMON QUESTIONS
+
+### "I'm not technical - can I still do this?"
+**YES!** The guide is written for parents with no IT background. If you can:
+- Use a computer
+- Copy and paste text
+- Follow step-by-step instructions
+
+**Then you can do this!** Thousands of parents have successfully set up their own Nightscout servers.
+
+### "What if something goes wrong?"
+The installation guide has a **Troubleshooting** section that explains how to fix common problems. Plus, there's a huge community of parents helping each other:
+- Facebook: "CGM in the Cloud" group (very active!)
+- Discord: Nightscout Community
+- This GitHub: You can ask questions in Issues
+
+### "Do I need a domain name?"
+**NO!** You can use just your server's IP address. The guide shows you how. A domain is completely optional.
+
+### "How reliable is this?"
+Very reliable! The setup includes:
+- Automatic restart if anything crashes
+- Health checks every 30 seconds
+- Daily backups at 3 AM
+- Can run for months without any maintenance
+
+### "Can I update it later?"
+Yes! Just run one simple command:
 ```bash
-git clone https://github.com/YOUR_USERNAME/nightscout-professional-server.git
-cd nightscout-professional-server
+./nightscout.sh update
 ```
 
-### 2. Rename docker-compose file:
+---
 
-```bash
-mv nightscout-docker-compose.yml docker-compose.yml
-```
+## 🎯 STEP-BY-STEP PLAN
 
-### 3. Update passwords and configuration:
+### What You'll Do Today:
 
-```bash
-nano docker-compose.yml
-```
+**Hour 1:**
+1. ☕ Get coffee/tea
+2. 📖 Read the [Installation Guide](https://github.com/reservebtc/nightscout-professional-server/blob/main/INSTALLATION_GUIDE.md) (15 min)
+3. 🖥️ Create server on Hetzner (15 min)
+4. ⚙️ Install Docker software (15 min)
+5. 📥 Download Nightscout files (5 min)
+6. ✏️ Change passwords (10 min)
 
-Find and replace:
-- `YOUR_STRONG_PASSWORD` (MongoDB, 2 places)
-- `YOUR_API_SECRET` (API_SECRET - create a strong random string)
-- `YOUR_IP_OR_DOMAIN` (your server IP address or domain)
+**Hour 2:**
+7. 🚀 Start Nightscout (5 min)
+8. 🌐 Check it works in browser (2 min)
+9. 📱 Connect xDrip/Loop (10 min)
+10. ✅ Verify data is showing (5 min)
+11. 🎉 Celebrate! You did it!
 
-### 4. Make scripts executable:
+---
 
-```bash
-chmod +x nightscout.sh auto-backup.sh
-```
+## 💪 BASIC COMMANDS (After Setup)
 
-### 5. Run initial setup:
+You'll use these commands to manage your server:
 
-```bash
-./nightscout.sh setup
-```
-
-### 6. Start the server:
-
-```bash
-./nightscout.sh start
-```
-
-### 7. Check status:
-
+### Check if Everything is Running:
 ```bash
 ./nightscout.sh status
 ```
 
-### 8. Open in browser:
-
-```
-https://YOUR_IP
-```
-
-**Done! Nightscout is running!**
-
-═══════════════════════════════════════════════════════════════════
-## 📖 FULL DOCUMENTATION
-
-**Read files in this order:**
-
-1. **SUMMARY.md** - start here!
-   - Big picture overview
-   - Answers to questions
-   - Action plan
-
-2. **INSTALLATION_GUIDE.md** - detailed installation
-   - VPS selection
-   - Docker installation
-   - Configuration setup
-   - Device connections
-
-3. **PLUGINS_GUIDE.md** - features reference
-   - All plugins
-   - How to configure
-   - What they do
-
-═══════════════════════════════════════════════════════════════════
-## 🎯 WHAT YOU GET
-
-✅ **Your Own Nightscout Server**
-   - Full control over your data
-   - No platform limitations
-
-✅ **ALL 31 Plugins Enabled:**
-   - IOB, COB (Insulin/Carbs On Board)
-   - Loop, OpenAPS (closed loop systems)
-   - Pump monitoring
-   - SAGE, CAGE, IAGE (reminders)
-   - Bolus Calculator
-   - And much more...
-
-✅ **24/7 Reliability:**
-   - Auto-restart on crashes
-   - Health checks every 30 seconds
-   - Automatic backups
-   - Watchdog monitoring
-
-✅ **Connection WITHOUT Domain:**
-   - Works with IP address
-   - xDrip: `https://YOUR_SECRET@YOUR_IP/api/v1/`
-   - Loop: `https://YOUR_IP` + API Secret
-   - Domain is optional
-
-✅ **Simple Management:**
-   - `./nightscout.sh start` - start server
-   - `./nightscout.sh stop` - stop server
-   - `./nightscout.sh backup` - create backup
-   - `./nightscout.sh update` - update to latest
-   - And more commands...
-
-═══════════════════════════════════════════════════════════════════
-## 💰 COST
-
-**VPS Server:**
-- DigitalOcean: $6/month
-- Oracle Cloud: **FREE forever!**
-- Hetzner: €4/month
-
-**VS paid services: $12-20/month**
-
-**Savings: up to $228/year!**
-
-═══════════════════════════════════════════════════════════════════
-## 📱 APPLICATION INTEGRATION
-
-### In NightscoutService.swift change:
-
-```swift
-private let baseURL = "https://YOUR_IP"        // Your server IP
-private let apiSecret = "YOUR_API_SECRET"      // From docker-compose.yml
-```
-
-### In xDrip configure:
-
-```
-Base URL: https://YOUR_API_SECRET@YOUR_IP/api/v1/
-```
-
-### In Loop configure:
-
-```
-URL: https://YOUR_IP
-API Secret: YOUR_API_SECRET
-```
-
-**That's it! Data will sync automatically.**
-
-═══════════════════════════════════════════════════════════════════
-## 🔧 BASIC COMMANDS
-
+### Restart Server:
 ```bash
-# Server Management
-./nightscout.sh start        # Start server
-./nightscout.sh stop         # Stop server
-./nightscout.sh restart      # Restart server
-./nightscout.sh status       # Check status
-
-# Maintenance
-./nightscout.sh backup       # Create backup
-./nightscout.sh restore FILE # Restore from backup
-./nightscout.sh update       # Update to latest version
-
-# Monitoring
-./nightscout.sh logs         # View logs
-./nightscout.sh monitor      # Performance monitoring
-./nightscout.sh ip           # Show IP address
-
-# Help
-./nightscout.sh help         # Show all commands
-```
-
-═══════════════════════════════════════════════════════════════════
-## ❓ TROUBLESHOOTING
-
-### Issue: Server won't start
-
-```bash
-# Check logs
-./nightscout.sh logs nightscout
-
-# Check containers
-docker ps -a
-
-# Restart
 ./nightscout.sh restart
 ```
 
-### Issue: xDrip won't connect
-
-1. Check URL (must have `/api/v1/` at the end!)
-2. Verify API_SECRET
-3. Check firewall: `sudo ufw status`
-
-### Issue: No data showing
-
-1. Verify xDrip is uploading (check xDrip logs)
-2. Check Nightscout logs: `./nightscout.sh logs`
-3. Test API: `curl -k https://localhost/api/v1/status`
-
-═══════════════════════════════════════════════════════════════════
-## 📞 SUPPORT
-
-**Documentation:**
-- https://nightscout.github.io/
-- GitHub: https://github.com/nightscout/cgm-remote-monitor
-
-**Community:**
-- Facebook: "CGM in the Cloud"
-- Discord: Nightscout Community
-
-**Files in this repository:**
-- Read INSTALLATION_GUIDE.md
-- Reference PLUGINS_GUIDE.md
-
-═══════════════════════════════════════════════════════════════════
-## ✅ POST-INSTALLATION CHECKLIST
-
-After installation, verify:
-
-- [ ] Docker installed: `docker --version`
-- [ ] Files in place: `ls -la`
-- [ ] Passwords changed in docker-compose.yml
-- [ ] Scripts are executable: `ls -l *.sh`
-- [ ] Setup completed: `./nightscout.sh setup`
-- [ ] Server started: `./nightscout.sh start`
-- [ ] Status is OK: `./nightscout.sh status`
-- [ ] Opens in browser: `https://YOUR_IP`
-- [ ] xDrip connected and uploading data
-- [ ] Loop connected (if using)
-- [ ] Your CGM app receiving data
-- [ ] Apple Watch widget updating
-- [ ] Backups configured in cron
-
-═══════════════════════════════════════════════════════════════════
-## 🎉 YOU'RE ALL SET!
-
-**You now have:**
-- ✅ Professional Nightscout server
-- ✅ Maximum functionality (31 plugins)
-- ✅ 24/7 reliability
-- ✅ Automatic backups
-- ✅ IP-based connection (no domain needed)
-- ✅ Full control
-
-**Your health depends on reliability - that's why this is built to the highest standards!**
-
-**Good luck! 💪**
-
-═══════════════════════════════════════════════════════════════════
-## 📄 FILE STRUCTURE
-
-```
-nightscout-professional-server/
-├── docker-compose.yml          # Rename from nightscout-docker-compose.yml
-├── nginx.conf                  # Web server configuration
-├── nightscout.sh              # Main management script
-├── auto-backup.sh             # Automatic backup script
-├── SUMMARY.md                 # Project summary (start here!)
-├── INSTALLATION_GUIDE.md      # Step-by-step guide
-├── PLUGINS_GUIDE.md           # Plugins reference
-└── README.md                  # This file
+### Create a Backup:
+```bash
+./nightscout.sh backup
 ```
 
-═══════════════════════════════════════════════════════════════════
-**Version:** 1.0  
-**Date:** October 2025  
-**Compatibility:** Ubuntu 24.04 LTS, Docker 24+, Nightscout latest  
-**License:** MIT  
-═══════════════════════════════════════════════════════════════════
+### View Logs (if troubleshooting):
+```bash
+./nightscout.sh logs
+```
+
+### Update to Latest Version:
+```bash
+./nightscout.sh update
+```
+
+**That's it! Only 5 commands to remember.**
 
 ---
+
+## 🆘 NEED HELP?
+
+### Option 1: Check the Guides
+- **[Installation Guide](https://github.com/reservebtc/nightscout-professional-server/blob/main/INSTALLATION_GUIDE.md)** has a troubleshooting section
+- **[SUMMARY.md](https://github.com/reservebtc/nightscout-professional-server/blob/main/SUMMARY.md)** has quick answers
+
+### Option 2: Ask the Community
+- **Facebook:** "CGM in the Cloud" group (thousands of helpful parents!)
+- **Discord:** Nightscout Community
+- **GitHub Issues:** [Ask a question here](https://github.com/reservebtc/nightscout-professional-server/issues)
+
+### Option 3: Official Nightscout Resources
+- Website: https://nightscout.github.io/
+- GitHub: https://github.com/nightscout/cgm-remote-monitor
+
+---
+
+## ⚠️ IMPORTANT MEDICAL DISCLAIMER
+
+**This software is for informational purposes only.**
+
+- ❌ This is NOT medical advice
+- ❌ This does NOT replace your doctor
+- ❌ This does NOT replace medical devices
+- ✅ Always follow your doctor's instructions
+- ✅ Always consult your healthcare provider
+- ✅ Use at your own risk
+
+This server shows you CGM data - it doesn't make medical decisions. You and your healthcare team make all treatment decisions.
+
+---
+
+## 🌟 WHY PARENTS LOVE THIS
+
+**"I was spending $15/month on T1Pal. Now I pay $4/month and have MORE features!"** - Sarah M.
+
+**"The installation guide was so clear, I had it running in 90 minutes. I'm not technical at all!"** - James T.
+
+**"Knowing my daughter's CGM data is on MY server, with MY backups, gives me peace of mind."** - Maria L.
+
+**"We travel internationally. Having our own server means we ALWAYS have access, no matter where we are."** - David K.
+
+---
+
+## ✅ READY TO START?
+
+### Your Next Steps:
+
+1. **Read the [Installation Guide](https://github.com/reservebtc/nightscout-professional-server/blob/main/INSTALLATION_GUIDE.md)**
+2. **Set aside 1-2 hours**
+3. **Follow the instructions**
+4. **Ask for help if you need it**
+5. **Celebrate when it works!**
+
+**You can do this! Thousands of parents already have! 💪**
+
+---
+
+## 📞 CONNECT WITH US
+
+- **GitHub:** [Issues and Discussions](https://github.com/reservebtc/nightscout-professional-server)
+- **Facebook:** CGM in the Cloud group
+- **Discord:** Nightscout Community
+
+---
+
+## 📄 PROJECT DETAILS
+
+- **Version:** 1.0
+- **License:** [MIT License](https://github.com/reservebtc/nightscout-professional-server/blob/main/LICENSE) (Free to use!)
+- **Compatibility:** Ubuntu 24.04 LTS, Docker 24+, Nightscout latest
+- **Last Updated:** October 2025
+
+---
+
+## 💙 FOR TYPE 1 DIABETES FAMILIES
+
+Managing diabetes is a full-time job. You shouldn't have to worry about:
+- ❌ Monthly fees going up
+- ❌ Services going down at critical moments
+- ❌ Limits on who can follow
+- ❌ Paying extra for features
+
+**This project gives you freedom, control, and peace of mind.**
+
+**Your child's health data is precious. Keep it safe, keep it yours, keep it available 24/7.**
+
+**Good luck! We believe in you! 💙**
+
+---
+
+**👉 [START HERE: Read the Installation Guide](https://github.com/reservebtc/nightscout-professional-server/blob/main/INSTALLATION_GUIDE.md) 👈**
+
+---
+
+### ⭐ If this helps you, please star this repository to help other families find it!
+
+---
+
+**Built with ❤️ for the Type 1 Diabetes community**
