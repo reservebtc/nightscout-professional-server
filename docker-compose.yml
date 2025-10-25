@@ -1,0 +1,328 @@
+version: '3.8'
+
+# ═══════════════════════════════════════════════════════════════
+# PROFESSIONAL NIGHTSCOUT SERVER
+# WITH MAXIMUM FUNCTIONALITY AND 24/7 RELIABILITY
+# ═══════════════════════════════════════════════════════════════
+
+services:
+  # ───────────────────────────────────────────────────────────────
+  # MONGODB - Database for storing all data
+  # ───────────────────────────────────────────────────────────────
+  mongo:
+    image: mongo:7.0
+    container_name: nightscout_mongo
+    restart: always
+    volumes:
+      - ./mongo-data:/data/db        # Persistent data on disk (IMPORTANT!)
+      - ./mongo-backup:/backup       # Backup folder
+    environment:
+      # IMPORTANT: Replace with your own secure credentials!
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: YOUR_STRONG_PASSWORD_HERE
+      MONGO_INITDB_DATABASE: nightscout
+    ports:
+      - "27017:27017"                # MongoDB port (close with firewall!)
+    networks:
+      - nightscout-network
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/nightscout --quiet
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # ───────────────────────────────────────────────────────────────
+  # NIGHTSCOUT - Main application
+  # ───────────────────────────────────────────────────────────────
+  nightscout:
+    image: nightscout/cgm-remote-monitor:latest
+    container_name: nightscout_app
+    restart: always
+    depends_on:
+      mongo:
+        condition: service_healthy
+    ports:
+      - "1337:1337"                  # Nightscout port
+    networks:
+      - nightscout-network
+    environment:
+      # ═══════════════════════════════════════════════════════════
+      # BASIC SETTINGS
+      # ═══════════════════════════════════════════════════════════
+      
+      # CRITICAL: API Secret (minimum 12 characters!)
+      # Used for access protection
+      API_SECRET: "YOUR_API_SECRET_MIN_12_CHARS"
+      
+      # MongoDB connection
+      # REPLACE password with the one you set above for mongo!
+      MONGO_CONNECTION: "mongodb://admin:YOUR_STRONG_PASSWORD_HERE@mongo:27017/nightscout?authSource=admin"
+      
+      # Units of measurement (mg/dl or mmol)
+      DISPLAY_UNITS: "mg/dl"
+      
+      # Base URL of your server
+      # Replace with your IP or domain
+      BASE_URL: "https://YOUR_IP_OR_DOMAIN"
+      
+      # Interface language
+      LANGUAGE: "en"
+      
+      # ═══════════════════════════════════════════════════════════
+      # MAXIMUM PLUGIN SET - EVERYTHING ENABLED!
+      # ═══════════════════════════════════════════════════════════
+      ENABLE: >-
+        careportal
+        basal
+        dbsize
+        rawbg
+        iob
+        maker
+        bridge
+        cob
+        bwp
+        cage
+        iage
+        sage
+        boluscalc
+        pushover
+        treatmentnotify
+        mmconnect
+        loop
+        pump
+        profile
+        food
+        openaps
+        bage
+        alexa
+        override
+        cors
+        delta
+        direction
+        timeago
+        devicestatus
+        upbat
+        errorcodes
+        ar2
+        simplealarms
+        speech
+        
+      # ═══════════════════════════════════════════════════════════
+      # THRESHOLD SETTINGS (CRITICAL FOR ALARMS!)
+      # ═══════════════════════════════════════════════════════════
+      
+      # Target range
+      BG_TARGET_BOTTOM: "70"        # Lower limit of normal range
+      BG_TARGET_TOP: "180"          # Upper limit of normal range
+      
+      # Alarm thresholds
+      BG_LOW: "70"                  # Low (yellow alert)
+      BG_HIGH: "180"                # High (yellow alert)
+      
+      # CRITICAL thresholds
+      ALARM_URGENT_LOW: "on"
+      ALARM_URGENT_HIGH: "on"
+      ALARM_LOW: "on"
+      ALARM_HIGH: "on"
+      ALARM_TIMEAGO_URGENT: "on"
+      ALARM_TIMEAGO_WARN: "on"
+      
+      # Time for stale data alarms
+      ALARM_TIMEAGO_URGENT_MINS: "15"  # Critical alert after 15 min
+      ALARM_TIMEAGO_WARN_MINS: "10"    # Warning after 10 min
+      
+      # ═══════════════════════════════════════════════════════════
+      # LOOP SETTINGS (for closed loop systems)
+      # ═══════════════════════════════════════════════════════════
+      LOOP_ENABLE_ALERTS: "true"
+      LOOP_WARN: "30"               # Warning if loop inactive for 30 min
+      LOOP_URGENT: "60"             # Critical alert after 60 min
+      
+      # ═══════════════════════════════════════════════════════════
+      # OPENAPS SETTINGS (if using)
+      # ═══════════════════════════════════════════════════════════
+      OPENAPS_ENABLE_ALERTS: "true"
+      OPENAPS_WARN: "30"
+      OPENAPS_URGENT: "60"
+      OPENAPS_FIELDS: "status-symbol status-label iob meal-assist rssi"
+      
+      # ═══════════════════════════════════════════════════════════
+      # PUMP SETTINGS
+      # ═══════════════════════════════════════════════════════════
+      PUMP_ENABLE_ALERTS: "true"
+      PUMP_WARN_CLOCK: "30"         # Warning if pump offline for 30 min
+      PUMP_URGENT_CLOCK: "60"       # Critical alert after 60 min
+      PUMP_WARN_RES: "50"           # Warning at 50 units insulin remaining
+      PUMP_URGENT_RES: "10"         # Critical alert at 10 units
+      PUMP_WARN_BATT_P: "30"        # Warning at 30% battery
+      PUMP_URGENT_BATT_P: "20"      # Critical alert at 20%
+      
+      # ═══════════════════════════════════════════════════════════
+      # SENSOR SETTINGS (SAGE - Sensor Age)
+      # ═══════════════════════════════════════════════════════════
+      SAGE_ENABLE_ALERTS: "true"
+      SAGE_INFO: "144"              # Info: sensor active for 6 days (144 hours)
+      SAGE_WARN: "168"              # Warning: 7 days
+      SAGE_URGENT: "192"            # Urgent: 8 days
+      
+      # ═══════════════════════════════════════════════════════════
+      # CANNULA SETTINGS (CAGE - Cannula Age)
+      # ═══════════════════════════════════════════════════════════
+      CAGE_ENABLE_ALERTS: "true"
+      CAGE_INFO: "48"               # Info: 2 days
+      CAGE_WARN: "72"               # Warning: 3 days
+      CAGE_URGENT: "96"             # Urgent: 4 days
+      
+      # ═══════════════════════════════════════════════════════════
+      # INSULIN SETTINGS (IAGE - Insulin Age)
+      # ═══════════════════════════════════════════════════════════
+      IAGE_ENABLE_ALERTS: "true"
+      IAGE_INFO: "168"              # Info: 7 days
+      IAGE_WARN: "336"              # Warning: 14 days
+      IAGE_URGENT: "504"            # Urgent: 21 days
+      
+      # ═══════════════════════════════════════════════════════════
+      # BATTERY SETTINGS (BAGE - Battery Age)
+      # ═══════════════════════════════════════════════════════════
+      BAGE_ENABLE_ALERTS: "true"
+      BAGE_INFO: "168"              # Info: 7 days
+      BAGE_WARN: "336"              # Warning: 14 days
+      BAGE_URGENT: "504"            # Urgent: 21 days
+      
+      # ═══════════════════════════════════════════════════════════
+      # THERAPY PROFILE (for IOB/COB calculations)
+      # ═══════════════════════════════════════════════════════════
+      # IMPORTANT: Configure according to your parameters!
+      
+      # Duration of Insulin Action (hours)
+      DIA: "5"
+      
+      # Insulin Sensitivity Factor (mg/dl per 1 unit)
+      ISF: "50"
+      
+      # Insulin to Carb ratio (grams per 1 unit)
+      IC: "10"
+      
+      # Carb absorption rate (grams per hour)
+      CARBS_HR: "30"
+      
+      # ═══════════════════════════════════════════════════════════
+      # SECURITY AND ACCESS
+      # ═══════════════════════════════════════════════════════════
+      
+      # Default role for access without token
+      # readable - anyone can view
+      # denied - token required for access
+      AUTH_DEFAULT_ROLES: "readable"
+      
+      # CORS for access from other domains
+      CORS_ALLOW_ORIGIN: "*"
+      
+      # Enable HTTPS (if using reverse proxy)
+      INSECURE_USE_HTTP: "false"
+      
+      # ═══════════════════════════════════════════════════════════
+      # ADDITIONAL SETTINGS
+      # ═══════════════════════════════════════════════════════════
+      
+      # Show raw data
+      SHOW_RAWBG: "always"
+      
+      # Show plugins
+      SHOW_PLUGINS: "careportal dbsize rawbg iob cob bwp cage iage sage boluscalc loop pump profile food openaps"
+      
+      # Color scheme (default colors)
+      THEME: "colors"
+      
+      # Time format
+      TIME_FORMAT: "24"
+      
+      # Night mode
+      NIGHT_MODE: "off"
+      
+      # Advanced device settings
+      DEVICESTATUS_ADVANCED: "true"
+      
+      # ═══════════════════════════════════════════════════════════
+      # PUSHOVER (if using for phone notifications)
+      # ═══════════════════════════════════════════════════════════
+      # Uncomment and configure if needed
+      # PUSHOVER_API_TOKEN: "your_pushover_api_token"
+      # PUSHOVER_USER_KEY: "your_pushover_user_key"
+      # PUSHOVER_ANNOUNCEMENT_KEY: "optional_group_key"
+      
+      # ═══════════════════════════════════════════════════════════
+      # BRIDGE - Dexcom Share connection (if using)
+      # ═══════════════════════════════════════════════════════════
+      # Uncomment if you want to receive data from Dexcom Share
+      # BRIDGE_USER_NAME: "your_dexcom_username"
+      # BRIDGE_PASSWORD: "your_dexcom_password"
+      # BRIDGE_SERVER: "EU"  # or "US"
+      # BRIDGE_MAX_COUNT: "1"
+      # BRIDGE_MINUTES: "1440"
+      
+      # ═══════════════════════════════════════════════════════════
+      # MMCONNECT - For Medtronic pumps (if using)
+      # ═══════════════════════════════════════════════════════════
+      # MMCONNECT_USER_NAME: "your_carelink_username"
+      # MMCONNECT_PASSWORD: "your_carelink_password"
+      # MMCONNECT_INTERVAL: "60000"
+      
+    volumes:
+      - ./nightscout-data:/opt/app/data  # Application data
+      
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:1337/api/v1/status"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+
+  # ───────────────────────────────────────────────────────────────
+  # NGINX - Reverse Proxy with SSL (HTTPS)
+  # ───────────────────────────────────────────────────────────────
+  nginx:
+    image: nginx:alpine
+    container_name: nightscout_nginx
+    restart: always
+    depends_on:
+      - nightscout
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./ssl:/etc/nginx/ssl:ro           # SSL certificates
+    networks:
+      - nightscout-network
+
+  # ───────────────────────────────────────────────────────────────
+  # MONGO-EXPRESS - Web UI for database management
+  # (Optional, for administration)
+  # ───────────────────────────────────────────────────────────────
+  mongo-express:
+    image: mongo-express:latest
+    container_name: nightscout_mongo_express
+    restart: always
+    depends_on:
+      - mongo
+    ports:
+      - "8081:8081"  # IMPORTANT: Close with firewall! Only for localhost
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: admin
+      ME_CONFIG_MONGODB_ADMINPASSWORD: YOUR_STRONG_PASSWORD_HERE
+      ME_CONFIG_MONGODB_URL: mongodb://admin:YOUR_STRONG_PASSWORD_HERE@mongo:27017/
+      ME_CONFIG_BASICAUTH_USERNAME: admin
+      ME_CONFIG_BASICAUTH_PASSWORD: YOUR_DIFFERENT_PASSWORD_HERE
+    networks:
+      - nightscout-network
+
+networks:
+  nightscout-network:
+    driver: bridge
+
+volumes:
+  mongo-data:
+  mongo-backup:
+  nightscout-data:
